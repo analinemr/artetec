@@ -12,10 +12,10 @@ class Postagem extends Model implements Auditable
     use \OwenIt\Auditing\Auditable;
     protected $table = 'postagens';
 
-    //Relacionamento 1x1 para retornar o nome da categoria ao puxar o ID pela postagem
-    public function categoria(): HasOne
+    //Relacionamento 1x1 para retornar o nome da artesao ao puxar o ID pela postagem
+    public function artesao(): HasOne
     {
-        return $this->hasOne(Categoria::class, 'id', 'categoria_id');
+        return $this->hasOne(Artesao::class, 'id', 'artesao_id');
     }
 
         //Relacionamento 1x1 para retornar o nome do autor ao puxar o ID pela postagem

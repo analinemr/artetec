@@ -37,7 +37,7 @@
                     <!-- Tabela -->
                     <table class='table'>
                         <tr>
-                            <th>Categoria</th>
+                            <th>Artesão</th>
                             <th>Título</th>
                             <th>Descrição</th>
                             <th>Ações</th>
@@ -46,8 +46,8 @@
                         @foreach ($postagens as $value)
                         <tr>
                             <td>{{ $value->id }}</td>
-                            <!-- Relacionamento com categoria -->
-                            <td>{{ $value->categoria->nome }}</td>
+                            <!-- Relacionamento com artesaos -->
+                            <td>{{ $value->artesao->nome }}</td>
                             <td>{{ $value->titulo }}</td>
                             <td>
                                 <div style="display: flex; flex-wrap: wrap; gap: 5px;">

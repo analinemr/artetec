@@ -20,10 +20,10 @@
             <ul>
                 <li class="current"><a href="{{ url("/") }}">Principal</a></li>
                 <li>
-                    <a href="#">Categorias</a>
+                    <a href="#">Artesãos</a>
                     <ul>
-                        @foreach ($categorias as $value)
-                            <li><a href="{{ url('/PostagemByCategoriaId/' . $value->id) }}">{{ $value->nome }}</a></li>
+                        @foreach ($artesaos as $value)
+                            <li><a href="{{ url('/PostagemByArtesaoId/' . $value->id) }}">{{ $value->nome }}</a></li>
                         @endforeach
                     </ul>
                 </li>

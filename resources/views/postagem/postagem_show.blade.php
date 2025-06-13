@@ -12,8 +12,8 @@
                     <!-- Visualização de postagem -->
 
                     <p><strong>Id: </strong>{{ $postagem->id }}</p>
-                    <!-- retorna nome da categoria atravél de comando do Model - Relacionamento 1x1 -->
-                    <p><strong>Categoria: </strong>{{ $postagem->categoria->nome }}</p>
+                    <!-- retorna nome da artesaos atravél de comando do Model - Relacionamento 1x1 -->
+                    <p><strong>Artesao: </strong>{{ $postagem->artesao->nome }}</p>
                     <p><strong>Autor: </strong>{{ $postagem->autor->name }}</p>
                     <p><strong>Título: </strong>{{ $postagem->titulo }}</p>
                     <!-- !! - Serve para redenrizar os códigos no EDITOR RICH -->

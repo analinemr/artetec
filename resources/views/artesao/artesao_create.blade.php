@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Novos produtos</div> <!-- Fechamento correto da tag div -->
+                <div class="card-header">Novos Artesãos</div> <!-- Fechamento correto da tag div -->
 
                 <div class="card-body">
                     
@@ -20,12 +20,12 @@
                     </div>
                     @endif
                     
-                <!-- Formulário de criação de categoria -->
+                <!-- Formulário de criação de artesaos -->
                     <form action="{{ url('categoria') }}" method="post">
                         @csrf  <!-- Protege o formulário contra CSRF -->
                         
                         <div class="form-group">
-                            <label for="nome">Nome da Categoria: </label>
+                            <label for="nome">Nome do artesao: </label>
                             <input type="text" id="nome" name="nome" class="form-control">
                         </div>
                         

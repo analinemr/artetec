@@ -32,8 +32,8 @@
                         @csrf  <!-- Protege o formulário contra CSRF -  -->
 
                         <div class="form-group">
-                        <select name="categoria_id" class="form-control">
-                            @foreach ($categorias as $value)
+                        <select name="artesaos_id" class="form-control">
+                            @foreach ($artesaos as $value)
                                 <option value="{{$value->id}}">{{$value->nome}}</option>
                             @endforeach
                         </select>

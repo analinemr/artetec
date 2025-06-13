@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Editar Categoria</div> <!-- Título do cartão -->
+                <div class="card-header">Editar Artesãos</div> <!-- Título do cartão -->
 
                 <div class="card-body">
                     
@@ -20,14 +20,14 @@
                     </div>
                     @endif
                     
-                    <!-- Formulário de edição de categoria -->
-                    <form action="{{ url('categoria/' . $categoria->id) }}" method="post">
+                    <!-- Formulário de edição de artesaos -->
+                    <form action="{{ url('artesao/' . $artesao->id) }}" method="post">
                         @method('PUT')  <!-- Indica que o método HTTP será PUT -->
                         @csrf  <!-- Protege o formulário contra CSRF -->
                         
                         <div class="form-group">
-                            <label for="nome">Nome da Categoria:</label>
-                            <input type="text" id="nome" name="nome" class="form-control" value="{{ $categoria->nome }}">
+                            <label for="nome">Nome do Artesão:</label>
+                            <input type="text" id="nome" name="nome" class="form-control" value="{{ $artesao->nome }}">
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>

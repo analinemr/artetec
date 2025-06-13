@@ -6,12 +6,12 @@ Um blog simples e funcional desenvolvido com **Laravel** e o motor de templates 
 
 ### Geral:
 - Página principal com exibição de postagens.
-- Visualização de postagens por **categoria**.
+- Visualização de postagens por **artesaos**.
 - Visualização de postagens por **autor**.
 
 ### Área Administrativa (com AdminLTE):
 - Cadastro, edição, visualização e exclusão de **postagens**.
-- Gerenciamento completo de **categorias**.
+- Gerenciamento completo de **artesaos**.
 - Criação de **usuários** e autenticação.
 - Edição de **perfil** e **alteração de senha**.
 

@@ -32,11 +32,11 @@
 
                         <!-- 'select' para inluir a cetegoria -->
                         <div class="form-group">
-                            <select name="categoria_id" class="form-control">
-                                @foreach ($categorias as $value)
+                            <select name="artesaos_id" class="form-control">
+                                @foreach ($artesaos as $value)
 
                                     <!-- IF para vincular o 'select' e retonar corretamente os dados -->
-                                    @if ($value->id == $postagem->categoria_id)
+                                    @if ($value->id == $postagem->artesaos_id)
                                         <option selected value="{{ $value->id }}">{{ $value->nome }}</option>
                                     @else
                                         <option value="{{ $value->id }}">{{ $value->nome }}</option>

@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use OwenIt\Auditing\Auditable;
 
-class Categoria extends Model implements AuditableContract
+class Artesao extends Model implements AuditableContract
 {
     use Auditable;
 
-    protected $table = 'Categorias';
+    protected $table = 'Artesaos';
 
     protected $fillable = ['nome'];
 }

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Categoria</div>
+                <div class="card-header">Artesão</div>
 
                 <!-- Script de confirmação -->
                 <script>
@@ -17,7 +17,7 @@
                 <div class="card-body">
 
                     <!-- Botão Criar -->
-                    <a class="btn btn-success mb-3" href="{{ url('categoria/create') }}">Criar nova categoria</a>
+                    <a class="btn btn-success mb-3" href="{{ url('artesao/create') }}">Criar nova artesao</a>
 
                     <!-- Mensagens de sessão -->
                     @if (session('message'))
@@ -40,18 +40,18 @@
                             <th>Ações</th>
                         </tr>
 
-                        @foreach ($categorias as $value)
+                        @foreach ($artesaos as $value)
                         <tr>
                             <td>{{ $value->id }}</td>
                             <td>{{ $value->nome }}</td>
                             <td>
                                 <!-- Botões organizados em linha com espaçamento -->
                                 <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-                                    <a class="btn btn-info btn-sm" href="{{ url('categoria/'.$value->id) }}">Visualizar</a>
+                                    <a class="btn btn-info btn-sm" href="{{ url('artesao/'.$value->id) }}">Visualizar</a>
 
-                                    <a class="btn btn-warning btn-sm" href="{{ url('categoria/'.$value->id.'/edit') }}">Editar</a>
+                                    <a class="btn btn-warning btn-sm" href="{{ url('artesao/'.$value->id.'/edit') }}">Editar</a>
 
-                                    <form action="{{ url('categoria/' .$value->id)}}" method="post" onsubmit="return ConfirmDelete()">
+                                    <form action="{{ url('artesao/' .$value->id)}}" method="post" onsubmit="return ConfirmDelete()">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm">Excluir</button>

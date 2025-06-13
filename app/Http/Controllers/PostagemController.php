@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//Inclui o model de categoria para
-use App\Models\Categoria;
+//Inclui o model de artesao para
+use App\Models\Artesao;
 //Inclui o model de postagem
 use App\Models\Postagem;
 
@@ -20,8 +20,8 @@ class PostagemController extends Controller
     //Criar nova postagem
     public function create()
     {
-        $categorias = Categoria::orderBy('nome', 'ASC')->get();
-        return view ('postagem.postagem_create', compact('categorias'));
+        $artesaos = Artesao::orderBy('nome', 'ASC')->get();
+        return view ('postagem.postagem_create', compact('artesaos'));
     }
 
     //Puxa dados para os SHOW
@@ -34,7 +34,7 @@ class PostagemController extends Controller
 
     // Regras de validação com as mensagens personalizadas
         $validated = $request->validate([
-            'categoria_id' => 'required',
+            'artesao_id' => 'required',
             'titulo' => 'required|min:5',
             'descricao' => 'required',
         ], $messages);
@@ -42,7 +42,7 @@ class PostagemController extends Controller
         //Criar e Salvar Postagem
         //dd($request->all());
         $postagem = new Postagem();
-        $postagem->categoria_id = $request->categoria_id;
+        $postagem->artesao_id = $request->artesao_id;
         $postagem->user_id = auth()->user()->id;
         $postagem->titulo = $request->titulo;
         $postagem->descricao = $request->descricao;
@@ -64,8 +64,8 @@ class PostagemController extends Controller
     public function edit(string $id)
     {
         $postagem=Postagem::find($id);
-        $categorias = Categoria::orderBy('nome', 'ASC')->get();
-        return view('postagem.postagem_edit', compact('postagem', 'categorias'));
+        $artesaos = Artesao::orderBy('nome', 'ASC')->get();
+        return view('postagem.postagem_edit', compact('postagem', 'artesaos'));
     }
 
     //Altera de postagens na edição
@@ -76,14 +76,14 @@ class PostagemController extends Controller
         ];
 
         $validated = $request->validate([
-            'categoria_id' => 'required',
+            'artesao_id' => 'required',
             'titulo' => 'required|min:5',
             'descricao' => 'required',
         ], $messages);
 
         //dd($request->all());
         $postagem = Postagem::find($id);
-        $postagem->categoria_id = $request->categoria_id;
+        $postagem->artesao_id = $request->artesao_id;
         $postagem->titulo = $request->titulo;
         $postagem->descricao = $request->descricao;
         $postagem->save();
