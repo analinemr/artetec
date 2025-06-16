@@ -79,8 +79,9 @@
 
     <!-- Paginação -->
     <div class="pagination" style="text-align: center; margin-top: 2rem;">
-        {{ $postagens->withQueryString()->links() }}
+    {{ $postagens->withQueryString()->links() }}
     </div>
+
 
 </section>
 

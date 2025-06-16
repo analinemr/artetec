@@ -150,34 +150,50 @@
             }
 
             .pagination nav {
-                display: inline-block;
+                display: flex;
+                justify-content: center;
+                margin-top: 2rem;
             }
 
             .pagination nav ul {
                 display: flex;
                 list-style: none;
-                justify-content: center;
                 padding-left: 0;
+                gap: 0.5rem;
+                flex-wrap: wrap;
             }
 
             .pagination nav li {
-                margin: 0 0.25rem;
+                transition: transform 0.2s ease;
+            }
+
+            .pagination nav li:hover {
+                transform: scale(1.05);
             }
 
             .pagination nav li a,
             .pagination nav li span {
                 display: block;
-                padding: 0.5em 1em;
-                background: #eee;
+                padding: 0.6em 1.1em;
+                background: #f8f9fa;
                 color: #333;
-                border-radius: 5px;
+                border-radius: 8px;
                 text-decoration: none;
+                border: 1px solid #ddd;
+                transition: background 0.3s ease, color 0.3s ease;
+            }
+
+            .pagination nav li a:hover {
+                background: #007bff;
+                color: #fff;
+                border-color: #007bff;
             }
 
             .pagination nav li.active span {
-                background: #008cba;
-                color: white;
+                background: #007bff;
+                color: #fff;
                 font-weight: bold;
+                border: 1px solid #007bff;
             }
         }
     </style>
@@ -205,7 +221,7 @@
                 </li>
 
                 @auth
-                    <li><a href="{{ url('/perfil') }}">Perfil</a></li>
+                    <li><a href="{{ route('home') }}">Perfil</a></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
