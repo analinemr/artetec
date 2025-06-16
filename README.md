@@ -3,11 +3,11 @@ Rio Art&Tec é o espaço digital que conecta você aos artesãos do Rio de Janei
 Incentivo ao artesanato sustentável e fortalecimento de economia criativa.
 
 ### Grupo de alunos:
-Alexssandro Nascimento
-Ana Aline Muniz 
-Daniel Menezes
-Daniel Sacramento
-Deivide Leandro
+- Alexssandro Nascimento
+- Ana Aline Muniz 
+- Daniel Menezes
+- Daniel Sacramento
+- Deivide Leandro
 
 ## Funcionalidades
 
