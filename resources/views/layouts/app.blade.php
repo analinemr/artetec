@@ -1,187 +1,283 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="pt-br">
 <head>
-    <title>Blog da Ana</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Rio Art&Tec</title>
+
+    <!-- CSS principal -->
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <style>
+        /* Estilos personalizados */
+        h2 {
+            color: #00bcd4;
+            font-size: 2em;
+            font-weight: 300;
+            border-bottom: 2px solid #00e5ff;
+            font-family: 'Segoe UI';
+        }
+
+        header {
+            background: #1b1b1b;
+            color: #fff;
+            padding: 1em 2em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #fff;
+            user-select: none;
+            cursor: default;
+        }
+
+        header nav {
+            display: flex;
+            align-items: center;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 2em;
+        }
+
+        header nav ul li {
+            position: relative;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5em 0;
+            display: inline-block;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        header nav ul li a:hover {
+            color: #00bcd4;
+        }
+
+        header nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background-color: #222;
+            border-radius: 6px;
+            min-width: 180px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            padding: 0.5em 0;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        header nav ul li:hover > ul {
+            display: block;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        header nav ul li ul li a {
+            color: #b1c2d6;
+            padding: 0.75em 1.5em;
+            display: block;
+            white-space: nowrap;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header nav ul li ul li a:hover {
+            background-color: #00bcd4;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-wrap: wrap;
+                padding: 1em;
+            }
+
+            header h1 {
+                flex: 1 1 100%;
+                text-align: center;
+                margin-bottom: 0.5em;
+            }
+
+            header nav {
+                flex: 1 1 100%;
+                justify-content: center;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                gap: 1em;
+                align-items: center;
+            }
+
+            header nav ul li ul {
+                position: static;
+                opacity: 1;
+                pointer-events: auto;
+                box-shadow: none;
+                background-color: transparent;
+                padding: 0;
+                min-width: auto;
+            }
+
+            header nav ul li:hover > ul {
+                display: block;
+            }
+
+            header nav ul li ul li a {
+                color: #ccc;
+                padding-left: 2em;
+            }
+
+            .pagination nav {
+                display: inline-block;
+            }
+
+            .pagination nav ul {
+                display: flex;
+                list-style: none;
+                justify-content: center;
+                padding-left: 0;
+            }
+
+            .pagination nav li {
+                margin: 0 0.25rem;
+            }
+
+            .pagination nav li a,
+            .pagination nav li span {
+                display: block;
+                padding: 0.5em 1em;
+                background: #eee;
+                color: #333;
+                border-radius: 5px;
+                text-decoration: none;
+            }
+
+            .pagination nav li.active span {
+                background: #008cba;
+                color: white;
+                font-weight: bold;
+            }
+        }
+    </style>
 </head>
-<body class="homepage is-preload">
-<div id="page-wrapper">
+<body>
 
-    <!-- Header -->
-    <section id="header">
+<!-- TOPO / MENU -->
+<header>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <a href="{{ url('/') }}" style="color: #00bcd4; font-size: 2em; font-weight: 700; text-decoration: none; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: color 0.3s ease; user-select: none;"
+           onmouseover="this.style.color='#00e5ff'" onmouseout="this.style.color='#00bcd4'">
+            Rio Art&Tec
+        </a>
 
-        <!-- Logo -->
-        <h1><a href="index.html">BLOG DA ANA</a></h1>
-
-        <!-- NAVEGADOR DE TEMPLATE -->
-        <nav id="nav">
+        <nav>
             <ul>
-                <li class="current"><a href="{{ url("/") }}">Principal</a></li>
+                <li><a href="{{ url('/') }}">Início</a></li>
                 <li>
                     <a href="#">Artesãos</a>
                     <ul>
                         @foreach ($artesaos as $value)
-                            <li><a href="{{ url('/PostagemByArtesaoId/' . $value->id) }}">{{ $value->nome }}</a></li>
+                            <li><a href="{{ url('/postagens/artesao/' . $value->id) }}">{{ $value->nome }}</a></li>
                         @endforeach
                     </ul>
                 </li>
-                <li>
-                    <a href="#">Autores</a>
-                    <ul>
-                        @foreach ($autores as $value)
-                            <li><a href="{{ url('/PostagemByAutorId/' . $value->id) }}">{{ $value->name }}</a></li>
-                        @endforeach
-                    </ul>
-                </li>
-                <li><a href="left-sidebar.html">Left Sidebar</a></li>
-                <li><a href="right-sidebar.html">Right Sidebar</a></li>
-                <li><a href="no-sidebar.html">No Sidebar</a></li>
+
+                @auth
+                    <li><a href="{{ url('/perfil') }}">Perfil</a></li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" style="background:none;border:none;color:white;cursor:pointer;">Sair</button>
+                        </form>
+                    </li>
+                @else
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Cadastro</a></li>
+                @endauth
             </ul>
         </nav>
+    </div>
+</header>
 
-        <div class="container">
-            @yield('content')
-        </div>
+<!-- BANNER / TOPO -->
+<article id="top" class="wrapper style1" style="background-image: url('{{ asset('images/praia.jpg') }}'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 500px; display: flex; align-items: center; color: white;">
+    <div class="container" style="position: relative; max-width: 1200px; margin: 0 auto;">
+        <p style="font-weight: 700; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 2rem; color: rgba(36, 4, 94, 0.9); line-height: 1.5; margin-top: 0;">
+            Rio Art&Tec é a plataforma que conecta você aos artesãos do Rio de Janeiro. Descubra, conheça e valorize o talento local,
+            explorando produtos exclusivos, histórias inspiradoras e a cultura artesanal carioca. Incentive o artesanato sustentável e fortaleça
+            a economia criativa da cidade.
+        </p>
+    </div>
+</article>
 
-        <!-- RODAPÉ DE TEMPLATE -->
-        <section id="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-8 col-12-medium">
-                        <section>
-                            <header>
-                                <h2>Palavras de Clarice</h2>
-                            </header>
-                            <ul class="dates">
-                                <li>
-                                    <span class="date">Jan <strong>27</strong></span>
-                                    <h3><a href="#">Liberdade</a></h3>
-                                    <p>Liberdade é pouco. O que eu desejo ainda não tem nome.</p>
-                                </li>
-                                <li>
-                                    <span class="date">Jan <strong>23</strong></span>
-                                    <h3><a href="#">Simplicidade</a></h3>
-                                    <p>Que ninguém se engane: só se consegue a simplicidade através de muito trabalho.</p>
-                                </li>
-                                <li>
-                                    <span class="date">Jan <strong>15</strong></span>
-                                    <h3><a href="#">Descoberta</a></h3>
-                                    <p>Sou como você me vê. Posso ser leve como uma brisa ou forte como uma ventania.</p>
-                                </li>
-                                <li>
-                                    <span class="date">Jan <strong>12</strong></span>
-                                    <h3><a href="#">Coragem</a></h3>
-                                    <p>Renda-se, como eu me rendi. Mergulhe no que você não conhece como eu mergulhei.</p>
-                                </li>
-                                <li>
-                                    <span class="date">Jan <strong>10</strong></span>
-                                    <h3><a href="#">Palavras</a></h3>
-                                    <p>Eu escrevo sem esperança de que o que eu escrevo altere qualquer coisa.</p>
-                                </li>
-                            </ul>
-                        </section>
-                    </div>
-                    <div class="col-4 col-12-medium">
-                        <section>
-                            <header>
-                                <h2>Clarice Lispector</h2>
-                            </header>
-                            <a href="#" class="image featured"><img src="{{ url('images/pic10.jpg') }}" alt="" /></a>
-                            <p>
-                                Escrevo como quem aprende. Não sei fazer outra coisa a não ser tocar o mistério com palavras.
-                                <br><br>
-                                “Até cortar os próprios defeitos pode ser perigoso. Nunca se sabe qual é o defeito que sustenta nosso edifício inteiro.”
-                            </p>
-                            <footer>
-                                <ul class="actions">
-                                    <li><a href="#" class="button">Ler mais</a></li>
-                                </ul>
-                            </footer>
-                        </section>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <section>
-                            <header>
-                                <h2>Fragmentos</h2>
-                            </header>
-                            <ul class="divided">
-                                <li><a href="#">"Ela acreditava em anjos e, porque acreditava, eles existiam."</a></li>
-                                <li><a href="#">"Sou composta por urgências."</a></li>
-                                <li><a href="#">"Não se preocupe em entender. Viver ultrapassa qualquer entendimento."</a></li>
-                                <li><a href="#">"Tenho várias caras. Uma é quase bonita, outra é quase feia."</a></li>
-                                <li><a href="#">"O silêncio é a única resposta que devemos dar aos tolos."</a></li>
-                                <li><a href="#">"O que verdadeiramente somos é aquilo que o impossível cria em nós."</a></li>
-                            </ul>
-                        </section>
-                    </div>
-                    <div class="col-4 col-6-medium col-12-small">
-                        <section>
-                            <header>
-                                <h2>Mais Clarice</h2>
-                            </header>
-                            <ul class="divided">
-                                <li><a href="#">"Escrevo porque encontro nisso um modo de viver."</a></li>
-                                <li><a href="#">"Enquanto eu tiver perguntas e não houver respostas, continuarei a escrever."</a></li>
-                                <li><a href="#">"Passei a vida tentando corrigir os erros que cometi na minha ânsia de acertar."</a></li>
-                                <li><a href="#">"Tudo no mundo começou com um sim."</a></li>
-                                <li><a href="#">"Não tenho tempo pra mais nada, ser feliz me consome muito."</a></li>
-                                <li><a href="#">"Sou uma pergunta sem resposta."</a></li>
-                            </ul>
-                        </section>
-                    </div>
-                    <div class="col-4 col-12-medium">
-                        <section>
-                            <header>
-                                <h2>Redes sociais</h2>
-                            </header>
-                            <ul class="social">
-                                <li><a class="icon brands fa-facebook-f" href="#"><span class="label">Facebook</span></a></li>
-                                <li><a class="icon brands fa-twitter" href="#"><span class="label">Twitter</span></a></li>
-                                <li><a class="icon brands fa-dribbble" href="#"><span class="label">Dribbble</span></a></li>
-                                <li><a class="icon brands fa-tumblr" href="#"><span class="label">Tumblr</span></a></li>
-                                <li><a class="icon brands fa-linkedin-in" href="#"><span class="label">LinkedIn</span></a></li>
-                            </ul>
-                            <ul class="contact">
-                                <li>
-                                    <h3>Endereço</h3>
-                                    <p>
-                                        Rua da Inspiração, 123<br />
-                                        Algum Lugar – BR
-                                    </p>
-                                </li>
-                                <li>
-                                    <h3>Email</h3>
-                                    <p><a href="#">ana@blog.com</a></p>
-                                </li>
-                                <li>
-                                    <h3>Telefone</h3>
-                                    <p>(00) 0000-0000</p>
-                                </li>
-                            </ul>
-                        </section>
-                    </div>
-                    <div class="col-12">
-                        <div id="copyright">
-                            <ul class="links">
-                                <li>&copy; Blog da Ana. Todos os direitos reservados.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+<!-- CONTEÚDO -->
+<div class="container">
+    @yield('content')
 </div>
 
-<!-- Scripts -->
+<!-- RODAPÉ -->
+<div class="container">
+    <section id="footer">
+        <div class="container">
+            <section>
+                <header>
+                    <h2>Contato</h2>
+                </header>
+                <li>
+                    <h3>Endereço</h3>
+                    <p>Rua da Inspiração, 123<br />Algum Lugar – BR</p>
+                </li>
+                <li>
+                    <h3>Email</h3>
+                    <p><a href="#">equipe@artetec.com.br</a></p>
+                </li>
+                <li>
+                    <h3>Telefone</h3>
+                    <p>(21) 9999-8888</p>
+                </li>
+            </section>
+
+            <div class="col-12">
+                <div id="copyright">
+                    <ul class="links">
+                        <li>&copy; Art&Tec - Trabalho de conclusão do curso de Técnico de Informática CSI - 2025.1</li>
+                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- JS -->
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.dropotron.min.js') }}"></script>
 <script src="{{ asset('assets/js/browser.min.js') }}"></script>
 <script src="{{ asset('assets/js/breakpoints.min.js') }}"></script>
 <script src="{{ asset('assets/js/util.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 </body>
 </html>

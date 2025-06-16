@@ -9,38 +9,31 @@ use App\Models\User;
 
 class SiteController extends Controller
 {
-    public function index () {
-        $artesaos = Artesao::orderBy('nome', 'ASC')->get();
-        $autores = User::orderBy('name', 'ASC')->get();
-        
-        $postagens = Postagem::with(['artesao', 'autor']) // Carrega os relacionamentos
-            ->orderBy('created_at', 'DESC')
-            ->paginate(10);
-        
-        return view('welcome', compact('artesaos', 'postagens', 'autores'));
+    // Exibe a página inicial
+    public function index() {
+        $artesaos = Artesao::orderBy('nome', 'ASC')->paginate(6);
+        $postagens = Postagem::with(['artesao', 'autor'])->orderBy('created_at', 'DESC')->paginate(6);
+
+        return view('welcome', compact('artesaos', 'postagens'));
     }
 
-    public function PostagemByArtesaoId ($id) {
-        $artesaos = Artesao::orderBy('nome', 'ASC')->get();
-        $autores = User::orderBy('name', 'ASC')->get();
+public function PostagemByArtesaoId($id)
+{
+    // Busca o artesão pelo ID
+    $artesao = Artesao::findOrFail($id);
 
-        $postagens = Postagem::with(['artesao', 'autor']) // também aqui
-            ->where('artesao_id', $id)
-            ->orderBy('created_at', 'DESC')
-            ->paginate(10);
-        
-        return view('welcome', compact('artesaos', 'postagens', 'autores'));
-    }
+    // Busca as postagens relacionadas ao artesão
+    $postagens = Postagem::with(['artesao', 'autor'])
+        ->where('artesao_id', $id)
+        ->orderBy('created_at', 'DESC')
+        ->paginate(6);
 
-    public function PostagemByAutorId ($id) {
-        $artesaos = Artesao::orderBy('nome', 'ASC')->get();
-        $autores = User::orderBy('name', 'ASC')->get();
+    // Retorna a view com o artesão e suas postagens
+    return view('welcome', [
+        'artesaos' => collect([$artesao]), // Apenas o artesão selecionado
+        'postagens' => $postagens,
+        'artesao' => $artesao, // Para exibir biografia no topo
+    ]);
+}
 
-        $postagens = Postagem::with(['artesao', 'autor']) // também aqui
-            ->where('user_id', $id)
-            ->orderBy('created_at', 'DESC')
-            ->paginate(10);
-        
-        return view('welcome', compact('artesaos', 'postagens', 'autores'));
-    }
 }

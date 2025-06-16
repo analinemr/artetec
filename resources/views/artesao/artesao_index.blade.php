@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Artesão</div>
+        <div class="col-md-10">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">Artesãos</div>
 
                 <!-- Script de confirmação -->
                 <script>
@@ -17,7 +17,9 @@
                 <div class="card-body">
 
                     <!-- Botão Criar -->
-                    <a class="btn btn-success mb-3" href="{{ url('artesao/create') }}">Criar nova artesao</a>
+                    <div class="mb-3">
+                        <a class="btn btn-success" href="{{ url('artesao/create') }}">+ Criar nova artesão</a>
+                    </div>
 
                     <!-- Mensagens de sessão -->
                     @if (session('message'))
@@ -33,34 +35,39 @@
                     @endif
 
                     <!-- Tabela -->
-                    <table class='table'>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nome</th>
-                            <th>Ações</th>
-                        </tr>
-
-                        @foreach ($artesaos as $value)
-                        <tr>
-                            <td>{{ $value->id }}</td>
-                            <td>{{ $value->nome }}</td>
-                            <td>
-                                <!-- Botões organizados em linha com espaçamento -->
-                                <div style="display: flex; flex-wrap: wrap; gap: 5px;">
-                                    <a class="btn btn-info btn-sm" href="{{ url('artesao/'.$value->id) }}">Visualizar</a>
-
-                                    <a class="btn btn-warning btn-sm" href="{{ url('artesao/'.$value->id.'/edit') }}">Editar</a>
-
-                                    <form action="{{ url('artesao/' .$value->id)}}" method="post" onsubmit="return ConfirmDelete()">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nome</th>
+                                <th>Biografia</th>
+                                <th>Email</th>
+                                <th>Cidade</th>
+                                <th style="width: 200px;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($artesaos as $value)
+                                <tr>
+                                    <td>{{ $value->id }}</td>
+                                    <td>{{ $value->nome }}</td>
+                                    <td>{{ $value->biografia }}</td>
+                                    <td>{{ $value->email }}</td>
+                                    <td>{{ $value->cidade }}</td>
+                                    <td>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <a class="btn btn-info btn-sm" href="{{ url('artesao/'.$value->id) }}">Visualizar</a>
+                                            <a class="btn btn-warning btn-sm" href="{{ url('artesao/'.$value->id.'/edit') }}">Editar</a>
+                                            <form action="{{ url('artesao/' .$value->id)}}" method="post" onsubmit="return ConfirmDelete()">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
                     </table>
 
                 </div>
