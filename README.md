@@ -1,13 +1,12 @@
-# Blog da Ana ✍
-
-Um blog simples e funcional desenvolvido com **Laravel** e o motor de templates **Blade**, que permite a publicação de postagens categorizadas, gerenciamento de conteúdo via painel administrativo, e recursos de autenticação de usuários.
+# Rio Arte&Tec
+Rio Art&Tec é o espaço digital que conecta você aos artesãos do Rio de Janeiro. Aqui você pode descobrir produtos exclusivos, conhecer artesãos qualificados e valorizar o talento local. 
+Incentivo ao artesanato sustentável e fortalecimento de economia criativa.
 
 ## Funcionalidades
 
 ### Geral:
 - Página principal com exibição de postagens.
 - Visualização de postagens por **artesaos**.
-- Visualização de postagens por **autor**.
 
 ### Área Administrativa (com AdminLTE):
 - Cadastro, edição, visualização e exclusão de **postagens**.
@@ -48,7 +47,7 @@ Altere esta parte do código para ficar igual esta abaixo.
 - DB_CONNECTION=mysql
 - DB_HOST=127.0.0.1
 - DB_PORT=3306
-- DB_DATABASE=blog
+- DB_DATABASE=artetec
 - DB_USERNAME=root
 - DB_PASSWORD=
 
